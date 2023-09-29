@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::resource('coffee','ItemController');
+route::resource('coffee', ItemController::class);

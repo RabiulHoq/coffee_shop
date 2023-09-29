@@ -20,26 +20,26 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route(coffee . store) }}">
+            <form method="POST" action="{{ route('coffee.store') }}">
                 @csrf
                 <div class="form-group">
-                    <label for="name">Item Name</label>
-                    <input type="text" class="form-control" name="item_name">
+                    <label for="name">Coffee Name</label>
+                    <input type="text" class="form-control" name="coffee_name">
 
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Item Description</label>
-                    <input type="text" class="form-control" name="item_description">
+                    <label for="description">Coffee Description</label>
+                    <input type="text" class="form-control" name="coffee_description">
 
                 </div>
 
                 <div class="form-group">
-                    <label for="price">Item Price</label>
-                    <input type="number" class="form-control" name="item_price">
+                    <label for="price">Coffee Price</label>
+                    <input type="number" class="form-control" name="coffee_price">
 
                 </div>
-
+                <br>
                 <button type="submit" class="btn btn-primary">Add Item</button>
             </form>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -11,7 +12,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items= Item::all();
+        return view('items.index',compact('items'));
     }
 
     /**
@@ -27,7 +29,18 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'coffee_name'=> 'required',
+            'coffee_description'=>'required|string',
+            'coffee_price' => 'required|integer'
+        ]);
+        $item=new Item([
+            'coffee_name'=> $request->get('coffee_name'),
+            'coffee_desc'=> $request->get('coffee_description'),
+            'coffee_price'=> $request->get('coffee_price')
+        ]);
+        $item->save();
+        return redirect('/coffee')->with('Success','Coffee Item has been added');
     }
 
     /**
@@ -62,3 +75,6 @@ class ItemController extends Controller
         //
     }
 }
+
+
+
