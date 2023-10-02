@@ -54,26 +54,40 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $items =Item::find($id);
+        return view('items.edit',compact('items'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$id)
     {
-        //
+        $request->validate([
+            'coffee_name'=> 'required',
+            'coffee_description'=>'required|string',
+            'coffee_price' => 'required|integer'
+        ]);
+        $item = Item::find($id);
+        $item->coffee_name=$request->get('coffee_name');
+        $item->coffee_desc=$request->get('coffee_description');
+        $item->coffee_price=$request->get('coffee_price');
+        $item->save();
+        return redirect('/coffee')->with('success','Coffee Item has been updated');
+        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $items = Item::find($id);
+        $items->delete();
+        return redirect('/coffee')->with('success','Coffee Item has been deleted successfully');
+}
 }
 
 
